@@ -3,8 +3,11 @@ abstract: test directory attributes
 author: 
   - Martin 'Kingpin' Thurn <mthurn@cpan.org>
 build_requires: 
+  Pod::Coverage: 0
   Test::Builder::Tester: 0
   Test::More: 0
+  Test::Pod: 0
+  Test::Pod::Coverage: 0
 distribution_type: module
 generated_by: Module::Install version 0.68
 license: perl
@@ -18,4 +21,4 @@ no_index:
     - t
 requires: 
   Test::Builder: 0
-version: 1.002
+version: 1.004

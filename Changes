@@ -1,3 +1,7 @@
+2007-11-23    <Daddy@C-3PO>
+
+	* lib/Test/Dir.pm: do not use 'our' (friendly to older perl)
+
 2007-11-22    <Daddy@C-3PO>
 
 	* lib/Test/Dir.pm: first release

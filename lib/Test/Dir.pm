@@ -1,13 +1,18 @@
+
+# $Id: Dir.pm,v 1.4 2008/01/20 23:05:32 Daddy Exp $
+
 package Test::Dir;
 
-use warnings;
 use strict;
+use warnings;
 
 use Exporter;
 use Test::Builder;
 
+use vars qw( @EXPORT $VERSION );
+
 use base 'Exporter';
-our @EXPORT = qw( dir_exists_ok dir_not_exists_ok );
+@EXPORT = qw( dir_exists_ok dir_not_exists_ok );
 
 =head1 NAME
 
@@ -15,7 +20,7 @@ Test::Dir - test directory attributes
 
 =cut
 
-our $VERSION = do { my @r = (q$Revision: 1.2 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
+$VERSION = do { my @r = (q$Revision: 1.4 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
 
 
 =head1 SYNOPSIS
@@ -35,7 +40,7 @@ my $Test = new Test::Builder;
 
 =head1 FUNCTIONS
 
-=head2 dir_exists_ok
+=head2 dir_exists_ok(DIRNAME [, TESTNAME] )
 
 Ok if the directory exists, and not ok otherwise.
 
@@ -58,7 +63,7 @@ sub dir_exists_ok
   } # dir_exists_ok
 
 
-=head2 dir_not_exists_ok
+=head2 dir_not_exists_ok(DIRNAME [, TESTNAME] )
 
 Ok if the directory does not exist, and not ok otherwise.
 
@@ -92,14 +97,11 @@ the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Dir>.
 automatically be notified of progress on your bug as I make changes.
 
 
-
-
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
 
     perldoc Test::Dir
-
 
 You can also look for information at:
 
@@ -122,7 +124,6 @@ L<http://cpanratings.perl.org/d/Test-Dir>
 L<http://search.cpan.org/dist/Test-Dir>
 
 =back
-
 
 =head1 ACKNOWLEDGEMENTS
 
