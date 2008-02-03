@@ -1,5 +1,5 @@
 
-# $Id: Dir.pm,v 1.4 2008/01/20 23:05:32 Daddy Exp $
+# $Id: Dir.pm,v 1.5 2008/02/03 15:27:43 Daddy Exp $
 
 package Test::Dir;
 
@@ -20,23 +20,20 @@ Test::Dir - test directory attributes
 
 =cut
 
-$VERSION = do { my @r = (q$Revision: 1.4 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
+$VERSION = do { my @r = (q$Revision: 1.5 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
+
+my $Test = new Test::Builder;
 
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
+  use Test::More ...;
+  use Test::Dir;
 
-Perhaps a little code snippet.
+=head1 DESCRIPTION
 
-    use Test::Dir;
-
-    my $foo = Test::Dir->new();
-    ...
-
-=cut
-
-my $Test = new Test::Builder;
+This modules provides a collection of test utilities for director attributes.
+Use it in combination with Test::More in your test programs.
 
 =head1 FUNCTIONS
 
@@ -86,6 +83,11 @@ sub dir_not_exists_ok
   } # dir_not_exists_ok
 
 
+=head1 TO DO
+
+I know there are a lot more directory attributes that can be tested.
+If you need them, please ask (or better yet, contribute code!).
+
 =head1 AUTHOR
 
 Martin 'Kingpin' Thurn, C<< <mthurn at cpan.org> >>
@@ -101,7 +103,7 @@ automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Test::Dir
+  perldoc Test::Dir
 
 You can also look for information at:
 
@@ -130,7 +132,7 @@ L<http://search.cpan.org/dist/Test-Dir>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright (C) 2007 Martin 'Kingpin' Thurn
+Copyright (C) 2007-2008 Martin 'Kingpin' Thurn
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
