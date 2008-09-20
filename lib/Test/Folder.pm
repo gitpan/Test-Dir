@@ -1,7 +1,7 @@
 
-# $Id: Dir.pm,v 1.6 2008/09/20 00:50:35 Martin Exp $
+# $Id: Folder.pm,v 1.1 2008/09/20 00:49:27 Martin Exp $
 
-package Test::Dir;
+package Test::Folder;
 
 use strict;
 use warnings;
@@ -12,15 +12,15 @@ use Test::Builder;
 use vars qw( @EXPORT $VERSION );
 
 use base 'Exporter';
-@EXPORT = qw( dir_exists_ok dir_not_exists_ok );
+@EXPORT = qw( folder_exists_ok folder_not_exists_ok );
 
 =head1 NAME
 
-Test::Dir - test directory attributes
+Test::Folder - test folder attributes
 
 =cut
 
-$VERSION = do { my @r = (q$Revision: 1.6 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
+$VERSION = do { my @r = (q$Revision: 1.1 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
 
 my $Test = new Test::Builder;
 
@@ -28,25 +28,25 @@ my $Test = new Test::Builder;
 =head1 SYNOPSIS
 
   use Test::More ...;
-  use Test::Dir;
+  use Test::Folder;
 
 =head1 DESCRIPTION
 
-This modules provides a collection of test utilities for directory attributes.
+This modules provides a collection of test utilities for folder attributes.
 Use it in combination with Test::More in your test programs.
 
 =head1 FUNCTIONS
 
-=head2 dir_exists_ok(DIRNAME [, TESTNAME] )
+=head2 folder_exists_ok(FOLDERNAME [, TESTNAME] )
 
-Ok if the directory exists, and not ok otherwise.
+Ok if the folder exists, and not ok otherwise.
 
 =cut
 
-sub dir_exists_ok
+sub folder_exists_ok
   {
   my $sDir = shift;
-  my $sName = shift || "dir $sDir exists";
+  my $sName = shift || "folder $sDir exists";
   my $iOK = -d $sDir;
   if ($iOK)
     {
@@ -54,22 +54,22 @@ sub dir_exists_ok
     }
   else
     {
-    $Test->diag(qq{directory [$sDir] does not exist});
+    $Test->diag(qq{folder [$sDir] does not exist});
     $Test->ok(0, $sName);
     }
-  } # dir_exists_ok
+  } # folder_exists_ok
 
 
-=head2 dir_not_exists_ok(DIRNAME [, TESTNAME] )
+=head2 folder_not_exists_ok(FOLDERNAME [, TESTNAME] )
 
-Ok if the directory does not exist, and not ok otherwise.
+Ok if the folder does not exist, and not ok otherwise.
 
 =cut
 
-sub dir_not_exists_ok
+sub folder_not_exists_ok
   {
   my $sDir = shift;
-  my $sName = shift || "dir $sDir does not exist";
+  my $sName = shift || "folder $sDir does not exist";
   my $iOK = ! -d $sDir;
   if ($iOK)
     {
@@ -77,15 +77,15 @@ sub dir_not_exists_ok
     }
   else
     {
-    $Test->diag(qq{directory [$sDir] does not exist});
+    $Test->diag(qq{folder [$sDir] does not exist});
     $Test->ok(0, $sName);
     }
-  } # dir_not_exists_ok
+  } # folder_not_exists_ok
 
 
 =head1 TO DO
 
-I know there are a lot more directory attributes that can be tested.
+There are probably some more folder attributes that can be tested.
 If you need them, please ask (or better yet, contribute code!).
 
 =head1 AUTHOR
@@ -103,7 +103,7 @@ automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-  perldoc Test::Dir
+  perldoc Test::Folder
 
 You can also look for information at:
 

@@ -1,11 +1,11 @@
 
-# $Id: Makefile.PL,v 1.5 2008/01/20 23:06:36 Daddy Exp $
+# $Id: Makefile.PL,v 1.6 2008/09/20 00:52:20 Martin Exp $
 
 use inc::Module::Install;
 
 name     'Test-Dir';
 all_from 'lib/Test/Dir.pm';
-author   q{Martin 'Kingpin' Thurn <mthurn@cpan.org>}; # }}; # Emacs highlight bug?
+author   q{Martin `Kingpin` Thurn <mthurn@cpan.org>}; # }}; # Emacs highlight bug?
 
 requires 'Test::Builder';
 build_requires 'Test::Builder::Tester';
