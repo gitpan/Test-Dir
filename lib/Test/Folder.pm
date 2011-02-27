@@ -1,29 +1,30 @@
 
-# $Id: Folder.pm,v 1.1 2008/09/20 00:49:27 Martin Exp $
+# $Id: Folder.pm,v 1.7 2011-02-20 01:57:51 Martin Exp $
 
 package Test::Folder;
 
 use strict;
 use warnings;
 
-use Exporter;
-use Test::Builder;
+our
+$VERSION = do { my @r = (q$Revision: 1.7 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
 
-use vars qw( @EXPORT $VERSION );
+use base qw( Exporter Test::Dir::Base );
+our @EXPORT;
+push @EXPORT, qw( folder_exists_ok folder_not_exists_ok );
+push @EXPORT, qw( folder_empty_ok folder_not_empty_ok );
+push @EXPORT, qw( folder_readable_ok folder_not_readable_ok );
+push @EXPORT, qw( folder_writable_ok folder_not_writable_ok );
+push @EXPORT, qw( folder_executable_ok folder_not_executable_ok );
 
-use base 'Exporter';
-@EXPORT = qw( folder_exists_ok folder_not_exists_ok );
+$Test::Dir::Base::dir = q{folder};
+$Test::Dir::Base::directory = q{folder};
+$Test::Dir::Base::Dir = q{Folder};
+$Test::Dir::Base::Directory = q{Folder};
 
 =head1 NAME
 
 Test::Folder - test folder attributes
-
-=cut
-
-$VERSION = do { my @r = (q$Revision: 1.1 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
-
-my $Test = new Test::Builder;
-
 
 =head1 SYNOPSIS
 
@@ -45,18 +46,7 @@ Ok if the folder exists, and not ok otherwise.
 
 sub folder_exists_ok
   {
-  my $sDir = shift;
-  my $sName = shift || "folder $sDir exists";
-  my $iOK = -d $sDir;
-  if ($iOK)
-    {
-    $Test->ok(1, $sName);
-    }
-  else
-    {
-    $Test->diag(qq{folder [$sDir] does not exist});
-    $Test->ok(0, $sName);
-    }
+  Test::Dir::Base::_dir_exists_ok(@_);
   } # folder_exists_ok
 
 
@@ -68,19 +58,104 @@ Ok if the folder does not exist, and not ok otherwise.
 
 sub folder_not_exists_ok
   {
-  my $sDir = shift;
-  my $sName = shift || "folder $sDir does not exist";
-  my $iOK = ! -d $sDir;
-  if ($iOK)
-    {
-    $Test->ok(1, $sName);
-    }
-  else
-    {
-    $Test->diag(qq{folder [$sDir] does not exist});
-    $Test->ok(0, $sName);
-    }
+  Test::Dir::Base::_dir_not_exists_ok(@_);
   } # folder_not_exists_ok
+
+
+=head2 folder_empty_ok(FOLDERNAME [, TESTNAME] )
+
+Ok if the folder is empty
+(contains no files or subfolders),
+and not ok otherwise.
+
+=cut
+
+sub folder_empty_ok
+  {
+  Test::Dir::Base::_dir_empty_ok(@_);
+  } # folder_empty_ok
+
+=head2 folder_not_empty_ok(FOLDERNAME [, TESTNAME] )
+
+Ok if the folder is not empty
+(contains any files or subfolders),
+and not ok otherwise.
+
+=cut
+
+sub folder_not_empty_ok
+  {
+  Test::Dir::Base::_dir_not_empty_ok(@_);
+  } # folder_not_empty_ok
+
+
+=head2 folder_readable_ok(FOLDERNAME [, TESTNAME] )
+
+Ok if the folder is readable, and not ok otherwise.
+
+=cut
+
+sub folder_readable_ok
+  {
+  Test::Dir::Base::_dir_readable_ok(@_);
+  } # folder_readable_ok
+
+=head2 folder_not_readable_ok(FOLDERNAME [, TESTNAME] )
+
+Ok if the folder is not readable, and not ok otherwise.
+
+=cut
+
+sub folder_not_readable_ok
+  {
+  Test::Dir::Base::_dir_not_readable_ok(@_);
+  } # folder_not_readable_ok
+
+
+=head2 folder_writable_ok(FOLDERNAME [, TESTNAME] )
+
+Ok if the folder is writable, and not ok otherwise.
+
+=cut
+
+sub folder_writable_ok
+  {
+  Test::Dir::Base::_dir_writable_ok(@_);
+  } # folder_writable_ok
+
+=head2 folder_not_writable_ok(FOLDERNAME [, TESTNAME] )
+
+Ok if the folder is not writable, and not ok otherwise.
+
+=cut
+
+sub folder_not_writable_ok
+  {
+  Test::Dir::Base::_dir_not_writable_ok(@_);
+  } # folder_not_writable_ok
+
+
+=head2 folder_executable_ok(FOLDERNAME [, TESTNAME] )
+
+Ok if the folder is executable, and not ok otherwise.
+
+=cut
+
+sub folder_executable_ok
+  {
+  Test::Dir::Base::_dir_executable_ok(@_);
+  } # folder_executable_ok
+
+=head2 folder_not_executable_ok(FOLDERNAME [, TESTNAME] )
+
+Ok if the folder is not executable, and not ok otherwise.
+
+=cut
+
+sub folder_not_executable_ok
+  {
+  Test::Dir::Base::_dir_not_executable_ok(@_);
+  } # folder_not_executable_ok
 
 
 =head1 TO DO
@@ -90,7 +165,7 @@ If you need them, please ask (or better yet, contribute code!).
 
 =head1 AUTHOR
 
-Martin 'Kingpin' Thurn, C<< <mthurn at cpan.org> >>
+Martin 'Kingpin' Thurn, C<mthurn at cpan.org>, L<http://tinyurl.com/nn67z>.
 
 =head1 BUGS
 

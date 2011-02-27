@@ -1,29 +1,25 @@
 
-# $Id: Dir.pm,v 1.6 2008/09/20 00:50:35 Martin Exp $
+# $Id: Dir.pm,v 1.12 2011-02-20 01:57:52 Martin Exp $
 
 package Test::Dir;
 
 use strict;
 use warnings;
 
-use Exporter;
-use Test::Builder;
+our
+$VERSION = do { my @r = (q$Revision: 1.12 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
 
-use vars qw( @EXPORT $VERSION );
-
-use base 'Exporter';
-@EXPORT = qw( dir_exists_ok dir_not_exists_ok );
+use base qw( Exporter Test::Dir::Base );
+our @EXPORT;
+push @EXPORT, qw( dir_exists_ok dir_not_exists_ok );
+push @EXPORT, qw( dir_empty_ok dir_not_empty_ok );
+push @EXPORT, qw( dir_readable_ok dir_not_readable_ok );
+push @EXPORT, qw( dir_writable_ok dir_not_writable_ok );
+push @EXPORT, qw( dir_executable_ok dir_not_executable_ok );
 
 =head1 NAME
 
 Test::Dir - test directory attributes
-
-=cut
-
-$VERSION = do { my @r = (q$Revision: 1.6 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
-
-my $Test = new Test::Builder;
-
 
 =head1 SYNOPSIS
 
@@ -45,20 +41,8 @@ Ok if the directory exists, and not ok otherwise.
 
 sub dir_exists_ok
   {
-  my $sDir = shift;
-  my $sName = shift || "dir $sDir exists";
-  my $iOK = -d $sDir;
-  if ($iOK)
-    {
-    $Test->ok(1, $sName);
-    }
-  else
-    {
-    $Test->diag(qq{directory [$sDir] does not exist});
-    $Test->ok(0, $sName);
-    }
-  } # dir_exists_ok
-
+  Test::Dir::Base::_dir_exists_ok(@_);
+  }
 
 =head2 dir_not_exists_ok(DIRNAME [, TESTNAME] )
 
@@ -68,19 +52,99 @@ Ok if the directory does not exist, and not ok otherwise.
 
 sub dir_not_exists_ok
   {
-  my $sDir = shift;
-  my $sName = shift || "dir $sDir does not exist";
-  my $iOK = ! -d $sDir;
-  if ($iOK)
-    {
-    $Test->ok(1, $sName);
-    }
-  else
-    {
-    $Test->diag(qq{directory [$sDir] does not exist});
-    $Test->ok(0, $sName);
-    }
-  } # dir_not_exists_ok
+  Test::Dir::Base::_dir_not_exists_ok(@_);
+  }
+
+=head2 dir_empty_ok(DIRNAME [, TESTNAME] )
+
+Ok if the directory is empty (contains no files or subdirectories),
+and not ok otherwise.
+
+=cut
+
+sub dir_empty_ok
+  {
+  Test::Dir::Base::_dir_empty_ok(@_);
+  }
+
+=head2 dir_not_empty_ok(DIRNAME [, TESTNAME] )
+
+Ok if the directory is not empty, and not ok otherwise.
+
+=cut
+
+sub dir_not_empty_ok
+  {
+  Test::Dir::Base::_dir_not_empty_ok(@_);
+  }
+
+=head2 dir_readable_ok(DIRNAME [, TESTNAME] )
+
+Ok if the directory is readable, and not ok otherwise.
+
+=cut
+
+sub dir_readable_ok
+  {
+  Test::Dir::Base::_dir_readable_ok(@_);
+  } # dir_readable_ok
+
+=head2 dir_not_readable_ok(DIRNAME [, TESTNAME] )
+
+Ok if the directory is not readable, and not ok otherwise.
+
+=cut
+
+sub dir_not_readable_ok
+  {
+  Test::Dir::Base::_dir_not_readable_ok(@_);
+  } # dir_not_readable_ok
+
+
+=head2 dir_writable_ok(DIRNAME [, TESTNAME] )
+
+Ok if the directory is writable, and not ok otherwise.
+
+=cut
+
+sub dir_writable_ok
+  {
+  Test::Dir::Base::_dir_writable_ok(@_);
+  } # dir_writable_ok
+
+=head2 dir_not_writable_ok(DIRNAME [, TESTNAME] )
+
+Ok if the directory is not writable, and not ok otherwise.
+
+=cut
+
+sub dir_not_writable_ok
+  {
+  Test::Dir::Base::_dir_not_writable_ok(@_);
+  } # dir_not_writable_ok
+
+
+=head2 dir_executable_ok(DIRNAME [, TESTNAME] )
+
+Ok if the directory is executable, and not ok otherwise.
+
+=cut
+
+sub dir_executable_ok
+  {
+  Test::Dir::Base::_dir_executable_ok(@_);
+  } # dir_executable_ok
+
+=head2 dir_not_executable_ok(DIRNAME [, TESTNAME] )
+
+Ok if the directory is not executable, and not ok otherwise.
+
+=cut
+
+sub dir_not_executable_ok
+  {
+  Test::Dir::Base::_dir_not_executable_ok(@_);
+  } # dir_not_executable_ok
 
 
 =head1 TO DO
@@ -90,13 +154,15 @@ If you need them, please ask (or better yet, contribute code!).
 
 =head1 AUTHOR
 
-Martin 'Kingpin' Thurn, C<< <mthurn at cpan.org> >>
+Martin 'Kingpin' Thurn, C<mthurn at cpan.org>, L<http://tinyurl.com/nn67z>.
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-test-dir at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Dir>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+Please report any bugs or feature requests to C<bug-test-dir at
+rt.cpan.org>, or through the web interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Dir>.  I will be
+notified, and then you'll automatically be notified of progress on
+your bug as I make changes.
 
 
 =head1 SUPPORT

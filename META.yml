@@ -1,15 +1,16 @@
 ---
 abstract: 'test directory attributes'
 author:
-  - 'Martin `Kingpin` Thurn <mthurn@cpan.org>'
+  - "Martin 'Kingpin' Thurn, C<mthurn at cpan.org>, L<http://tinyurl.com/nn67z>."
 build_requires:
-  Pod::Coverage: 0
+  ExtUtils::MakeMaker: 6.42
+  File::Path: 0
   Test::Builder::Tester: 0
   Test::More: 0
-  Test::Pod: 0
-  Test::Pod::Coverage: 0
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 0.76'
+generated_by: 'Module::Install version 1.00'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -19,8 +20,12 @@ no_index:
   directory:
     - inc
     - t
+recommends:
+  Pod::Coverage: 0
+  Test::Pod: 0
+  Test::Pod::Coverage: 0
 requires:
   Test::Builder: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 1.006
+version: 1.012

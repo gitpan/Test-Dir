@@ -1,18 +1,18 @@
 
-# $Id: Makefile.PL,v 1.6 2008/09/20 00:52:20 Martin Exp $
+# $Id: Makefile.PL,v 1.9 2011-02-18 00:30:21 Martin Exp $
 
 use inc::Module::Install;
 
 name     'Test-Dir';
 all_from 'lib/Test/Dir.pm';
-author   q{Martin `Kingpin` Thurn <mthurn@cpan.org>}; # }}; # Emacs highlight bug?
 
 requires 'Test::Builder';
+build_requires 'File::Path';
 build_requires 'Test::Builder::Tester';
 build_requires 'Test::More';
-build_recommends('Pod::Coverage');
-build_recommends('Test::Pod');
-build_recommends('Test::Pod::Coverage');
+recommends('Pod::Coverage');
+recommends('Test::Pod');
+recommends('Test::Pod::Coverage');
 
 WriteAll;
 
