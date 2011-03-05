@@ -1,5 +1,5 @@
 
-# $Id: Dir.pm,v 1.12 2011-02-20 01:57:52 Martin Exp $
+# $Id: Dir.pm,v 1.13 2011-03-05 14:29:28 Martin Exp $
 
 package Test::Dir;
 
@@ -7,7 +7,7 @@ use strict;
 use warnings;
 
 our
-$VERSION = do { my @r = (q$Revision: 1.12 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
+$VERSION = do { my @r = (q$Revision: 1.13 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
 
 use base qw( Exporter Test::Dir::Base );
 our @EXPORT;
@@ -209,4 +209,3 @@ under the same terms as Perl itself.
 1;
 
 __END__
-

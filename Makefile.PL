@@ -7,7 +7,7 @@ name     'Test-Dir';
 all_from 'lib/Test/Dir.pm';
 
 requires 'Test::Builder';
-build_requires 'File::Path';
+build_requires 'File::Path' => 2.07;
 build_requires 'Test::Builder::Tester';
 build_requires 'Test::More';
 recommends('Pod::Coverage');
