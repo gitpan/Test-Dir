@@ -1,5 +1,5 @@
 
-# $Id: Dir.pm,v 1.13 2011-03-05 14:29:28 Martin Exp $
+# $Id: Dir.pm,v 1.14 2012-03-07 03:25:35 Martin Exp $
 
 package Test::Dir;
 
@@ -7,9 +7,10 @@ use strict;
 use warnings;
 
 our
-$VERSION = do { my @r = (q$Revision: 1.13 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
+$VERSION = do { my @r = (q$Revision: 1.14 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
 
 use base qw( Exporter Test::Dir::Base );
+
 our @EXPORT;
 push @EXPORT, qw( dir_exists_ok dir_not_exists_ok );
 push @EXPORT, qw( dir_empty_ok dir_not_empty_ok );

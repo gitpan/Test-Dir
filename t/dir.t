@@ -65,17 +65,32 @@ SKIP:
   {
   skip q{some tests cannot run on Windows}, 3 if ($^O =~ m/MSWin32/i);
   chmod 0333, $sDir;
+  # Test will fail if we're root, therefore change our effective UID
+  # to something other than root:
+  $> = 1006;
   test_out(qq'ok 1 - dir $sDir is not readable');
   dir_not_readable_ok($sDir);
   test_test;
+  # Change our effective UID back to whatever it was when we started:
+  $> = $<;
   chmod 0444, $sDir;
+  # Test will fail if we're root, therefore change our effective UID
+  # to something other than root:
+  $> = 1006;
   test_out(qq'ok 1 - dir $sDir is not writable');
   dir_not_writable_ok($sDir);
   test_test;
+  # Change our effective UID back to whatever it was when we started:
+  $> = $<;
   chmod 0666, $sDir;
+  # Test will fail if we're root, therefore change our effective UID
+  # to something other than root:
+  $> = 1006;
   test_out(qq'ok 1 - dir $sDir is not executable');
   dir_not_executable_ok($sDir);
   test_test;
+  # Change our effective UID back to whatever it was when we started:
+  $> = $<;
   chmod 0777, $sDir;
   } # end of SKIP block
 
